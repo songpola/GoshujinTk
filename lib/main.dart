@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,17 +29,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Hello World!'),
-            ],
-          ),
-        ),
-      ),
+      body: WebView(
+        initialUrl: "https://goshujin.tk/",
+        javascriptMode: JavascriptMode.unrestricted,
+      )
     );
   }
 }
