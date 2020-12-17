@@ -28,6 +28,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  WebViewController _controller;
+
   @override
   void initState() {
     super.initState();
@@ -51,6 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: WebView(
         initialUrl: "https://goshujin.tk/",
         javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (controller) {
+          _controller = controller;
+        },
       ),
     );
   }
