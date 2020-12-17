@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="goshujin_tk_app"
+        android:label="GoshujinTk"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
