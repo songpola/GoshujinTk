@@ -23,9 +23,21 @@ class MainActivity : AppCompatActivity() {
                 setSupportMultipleWindows(true)
                 useWideViewPort = true
                 loadWithOverviewMode = true
+                setSupportZoom(true)
+                builtInZoomControls = true
 
                 webViewClient = MyWebViewClientCompat(this@MainActivity)
-                webChromeClient = MyWebChromeClient()
+                webChromeClient = MyWebChromeClient { newProgress ->
+                    if (newProgress == 0) {
+                        binding.mainAppBarLayout.setExpanded(true)
+                        binding.mainAppBarLayout.setLifted(true)
+                        binding.mainProgressBar.show()
+                    }
+                    binding.mainProgressBar.progress = newProgress
+                    if (newProgress == 100) {
+                        binding.mainProgressBar.hide()
+                    }
+                }
             }
 
             // Dark theme support
