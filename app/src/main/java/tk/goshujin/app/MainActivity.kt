@@ -3,6 +3,7 @@ package tk.goshujin.app
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.KeyEvent
+import android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
 import androidx.appcompat.app.AppCompatActivity
 import androidx.webkit.*
 import tk.goshujin.app.databinding.ActivityMainBinding
@@ -25,6 +26,13 @@ class MainActivity : AppCompatActivity() {
                 loadWithOverviewMode = true
                 setSupportZoom(true)
                 builtInZoomControls = true
+
+                // To load image properly
+                loadsImagesAutomatically = true
+                domStorageEnabled = true
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    mixedContentMode = MIXED_CONTENT_ALWAYS_ALLOW
+                }
 
                 webViewClient = MyWebViewClientCompat(this@MainActivity)
                 webChromeClient = MyWebChromeClient { newProgress ->
