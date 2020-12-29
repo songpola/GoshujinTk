@@ -3,6 +3,8 @@ package tk.goshujin.app
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
 import androidx.appcompat.app.AppCompatActivity
 import androidx.webkit.*
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.mainToolbar)
 
         binding.mainWebView.apply {
             settings.apply {
@@ -72,5 +76,24 @@ class MainActivity : AppCompatActivity() {
         // If it wasn't the Back key or there's no web page history, bubble up to the default
         // system behavior (probably exit the activity)
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_webview, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_zoomIn -> {
+                binding.mainWebView.zoomIn()
+                true
+            }
+            R.id.menu_zoomOut -> {
+                binding.mainWebView.zoomOut()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
