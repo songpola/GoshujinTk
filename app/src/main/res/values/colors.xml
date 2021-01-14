@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary_200">#a7b9cd</color>
-    <color name="primary_light">#d9ebff</color>
-    <color name="primary_dark">#78899c</color>
-    <color name="primary_surface">#000000</color>
+    <color name="primary">#FFA7B9CD</color>
+    <color name="primaryLight">#FFD9EBFF</color>
+    <color name="primaryDark">#FF78899C</color>
 
-    <color name="secondary_800">#d97b33</color>
-    <color name="secondary_light">#ffab61</color>
-    <color name="secondary_dark">#a24e00</color>
-    <color name="secondary_surface">#000000</color>
+
+    <color name="secondary">#FFD97B33</color>
+    <color name="secondaryLight">#FFFFAB61</color>
+    <color name="secondaryDark">#FFA24E00</color>
+
+    <color name="black">#FF000000</color>
 </resources>

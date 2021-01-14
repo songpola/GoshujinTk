@@ -2,6 +2,7 @@ package tk.goshujin.app
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
@@ -42,13 +43,13 @@ class MainActivity : AppCompatActivity() {
                 webViewClient = MyWebViewClientCompat(this@MainActivity)
                 webChromeClient = MyWebChromeClient { newProgress ->
                     if (newProgress == 0) {
-//                        binding.mainAppBarLayout.setExpanded(true)
-//                        binding.mainAppBarLayout.setLifted(true)
                         binding.mainProgressBar.show()
+                        binding.mainSwipeRefreshLayout.isRefreshing = true
                     }
                     binding.mainProgressBar.progress = newProgress
                     if (newProgress == 100) {
                         binding.mainProgressBar.hide()
+                        binding.mainSwipeRefreshLayout.isRefreshing = false
                     }
                 }
             }
@@ -65,6 +66,13 @@ class MainActivity : AppCompatActivity() {
                     loadUrl("https://goshujin.tk/")
                 }
             }
+        }
+        TypedValue().also {
+            theme.resolveAttribute(R.attr.colorSecondary, it, true)
+            binding.mainSwipeRefreshLayout.setColorSchemeResources(it.resourceId)
+        }
+        binding.mainSwipeRefreshLayout.setOnRefreshListener {
+            binding.mainWebView.reload()
         }
     }
 
