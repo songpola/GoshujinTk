@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 loadWithOverviewMode = true
                 setSupportZoom(true)
                 builtInZoomControls = true
+                displayZoomControls = false
 
                 // To load image properly
                 loadsImagesAutomatically = true
@@ -41,8 +42,8 @@ class MainActivity : AppCompatActivity() {
                 webViewClient = MyWebViewClientCompat(this@MainActivity)
                 webChromeClient = MyWebChromeClient { newProgress ->
                     if (newProgress == 0) {
-                        binding.mainAppBarLayout.setExpanded(true)
-                        binding.mainAppBarLayout.setLifted(true)
+//                        binding.mainAppBarLayout.setExpanded(true)
+//                        binding.mainAppBarLayout.setLifted(true)
                         binding.mainProgressBar.show()
                     }
                     binding.mainProgressBar.progress = newProgress
