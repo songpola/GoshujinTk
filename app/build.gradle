@@ -75,4 +75,18 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     // Annotation processor (Java 8)
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
+    /*
+        Jetpack Navigation component
+    */
+    def nav_version = "2.3.3"
+
+    // Navigation component
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    // KTX
+    implementation "androidx.navigation:navigation-runtime-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }
