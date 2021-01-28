@@ -2,4 +2,6 @@
     <string name="app_name">GoshujinTk</string>
     <string name="menu_zoom_out">Zoom Out</string>
     <string name="menu_zoom_in">Zoom In</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_openInBrowser">Open in browser</string>
 </resources>

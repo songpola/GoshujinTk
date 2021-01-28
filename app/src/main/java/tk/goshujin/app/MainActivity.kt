@@ -102,6 +102,22 @@ class MainActivity : AppCompatActivity() {
                 binding.mainWebView.zoomOut()
                 true
             }
+            R.id.menu_share -> {
+                startActivity(
+                    Intent.createChooser(
+                        Intent(Intent.ACTION_SEND).apply {
+                            putExtra(Intent.EXTRA_TEXT, binding.mainWebView.url)
+                            type = "text/plain"
+                        },
+                        null
+                    )
+                )
+                true
+            }
+            R.id.menu_openInBrowser -> {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(binding.mainWebView.url)))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -12,4 +12,16 @@
         android:icon="@drawable/ic_baseline_zoom_out_24"
         android:title="@string/menu_zoom_out"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_share"
+        android:icon="@drawable/ic_baseline_zoom_out_24"
+        android:title="@string/menu_share"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_openInBrowser"
+        android:icon="@drawable/ic_baseline_zoom_out_24"
+        android:title="@string/menu_openInBrowser"
+        app:showAsAction="never" />
 </menu>
