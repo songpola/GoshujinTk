@@ -10,4 +10,14 @@ class MyWebChromeClient(
         super.onProgressChanged(view, newProgress)
         onProgressChangedCallback(newProgress)
     }
+
+//    override fun onCreateWindow(
+//        view: WebView?,
+//        isDialog: Boolean,
+//        isUserGesture: Boolean,
+//        resultMsg: Message?
+//    ): Boolean {
+//
+//        return true
+//    }
 }

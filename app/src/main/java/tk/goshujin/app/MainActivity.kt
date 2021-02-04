@@ -1,6 +1,8 @@
 package tk.goshujin.app
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.KeyEvent
@@ -11,9 +13,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.webkit.*
 import tk.goshujin.app.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var isSafeBrowsingInitialized: Boolean = false
+
+    companion object {
+        const val BASE_URL = "https://goshujin.tk/"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.mainToolbar)
-
         binding.mainWebView.apply {
             settings.apply {
                 @SuppressLint("SetJavaScriptEnabled")
@@ -40,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                     mixedContentMode = MIXED_CONTENT_ALWAYS_ALLOW
                 }
 
-                webViewClient = MyWebViewClientCompat(this@MainActivity)
+                webViewClient = MyWebViewClientCompat(this@MainActivity, binding)
                 webChromeClient = MyWebChromeClient { newProgress ->
                     if (newProgress == 0) {
                         binding.mainProgressBar.show()
@@ -63,10 +69,14 @@ class MainActivity : AppCompatActivity() {
             if (WebViewFeature.isFeatureSupported(WebViewFeature.START_SAFE_BROWSING)) {
                 WebViewCompat.startSafeBrowsing(this@MainActivity) { success ->
                     isSafeBrowsingInitialized = success
-                    loadUrl("https://goshujin.tk/")
+                    loadUrl(BASE_URL)
                 }
+            } else {
+                loadUrl(BASE_URL)
             }
         }
+
+        // SwipeRefreshLayout
         TypedValue().also {
             theme.resolveAttribute(R.attr.colorSecondary, it, true)
             binding.mainSwipeRefreshLayout.setColorSchemeResources(it.resourceId)

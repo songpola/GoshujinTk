@@ -10,8 +10,17 @@ import androidx.core.content.ContextCompat
 import androidx.webkit.SafeBrowsingResponseCompat
 import androidx.webkit.WebViewClientCompat
 import androidx.webkit.WebViewFeature
+import tk.goshujin.app.databinding.ActivityMainBinding
 
-class MyWebViewClientCompat(private val context: Context) : WebViewClientCompat() {
+class MyWebViewClientCompat(
+    private val context: Context,
+    private val binding: ActivityMainBinding
+) : WebViewClientCompat() {
+
+    override fun onPageFinished(view: WebView?, url: String?) {
+        super.onPageFinished(view, url)
+        binding.mainToolbar.title = view?.title
+    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean =
