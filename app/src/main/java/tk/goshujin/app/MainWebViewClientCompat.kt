@@ -7,24 +7,25 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.webkit.SafeBrowsingResponseCompat
 import androidx.webkit.WebViewClientCompat
 import androidx.webkit.WebViewFeature
-import tk.goshujin.app.databinding.ActivityMainBinding
 
-class MyWebViewClientCompat(
+class MainWebViewClientCompat(
     private val context: Context,
-    private val binding: ActivityMainBinding
+    private val baseUrl: String,
+    private val onSetPageTitle: (title: String?) -> Unit
 ) : WebViewClientCompat() {
 
     override fun onPageFinished(view: WebView?, url: String?) {
         super.onPageFinished(view, url)
-        binding.mainToolbar.title = view?.title
+        onSetPageTitle(view?.title)
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean =
-        if (request.url.host == "goshujin.tk") {
+        if (request.url.host == baseUrl.toUri().host) {
             // This is my web site, so do not override; let my WebView load the page
             false
         } else {
